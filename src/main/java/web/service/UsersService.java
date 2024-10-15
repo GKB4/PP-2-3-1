@@ -14,4 +14,6 @@ public interface UsersService {
     User readUser(String name);
 
     List<User> getAllUsers();
+
+    void saveUser(User user);
 }

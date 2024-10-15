@@ -30,9 +30,16 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public List<User> getAllUsers() {
-        User.setUsersList(List.of(new User ("Igor", "Ilkov", 38),
-                new User("Sergey", "Shichkin", 45),
-                new User ("Pupok", "Pupkin", 78)));
+        if (User.getUsersList().isEmpty()) {
+            User.addUser(new User("Igor", "Ilkov", 38));
+            User.addUser(new User("Sergey", "Shichkin", 45));
+            User.addUser(new User("Pupok", "Pupkin", 78));
+        }
         return User.getUsersList();
+    }
+
+    @Override
+    public void saveUser(User user) {
+        User.addUser(user);
     }
 }

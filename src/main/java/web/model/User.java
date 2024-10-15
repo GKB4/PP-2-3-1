@@ -64,7 +64,10 @@ public class User {
         User.usersList = usersList;
     }
 
-    public static void addUser(int id, String name, String secondName, int age) {
+    public static void addUser(String name, String secondName, int age) {
         usersList.add(new User(name, secondName, age));
+    }
+    public static void addUser(User user) {
+        usersList.add(user);
     }
 }
