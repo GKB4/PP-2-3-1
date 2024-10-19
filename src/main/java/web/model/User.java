@@ -1,27 +1,25 @@
 package web.model;
 
-import org.springframework.stereotype.Component;
-
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Entity
+@Table(name = "users")
 public class User {
     private static int id_temp;
+    @Id
+    @GeneratedValue
     private int id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "secondName")
     private String secondName;
+    @Column(name = "age")
     private int age;
     private static List<User> usersList = new ArrayList<>();
 
     public User() {
-    }
-
-    public User(String name, String secondName, int age) {
-        this.id = id_temp++;
-        this.name = name;
-        this.secondName = secondName;
-        this.age = age;
     }
 
     public int getId() {
@@ -54,20 +52,5 @@ public class User {
 
     public void setAge(int age) {
         this.age = age;
-    }
-
-    public static List<User> getUsersList() {
-        return usersList;
-    }
-
-    public static void setUsersList(List<User> usersList) {
-        User.usersList = usersList;
-    }
-
-    public static void addUser(String name, String secondName, int age) {
-        usersList.add(new User(name, secondName, age));
-    }
-    public static void addUser(User user) {
-        usersList.add(user);
     }
 }

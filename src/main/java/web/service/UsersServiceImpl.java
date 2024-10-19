@@ -1,45 +1,51 @@
 package web.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+import web.dao.UserDAO;
 import web.model.User;
 
 import java.util.List;
 
 @Component
 public class UsersServiceImpl implements UsersService {
+    @Autowired
+    UserDAO userDAO;
 
+    @Transactional
     @Override
     public void createUser(String name, String secondName, int age) {
-
+        userDAO.create(name, secondName, age);
     }
 
+    @Transactional
     @Override
-    public void updateUser(String name, String secondName, int age) {
-
+    public void updateUser(int id, String name, String secondName, int age) {
+        userDAO.update(id, name, secondName, age);
     }
 
+    @Transactional
     @Override
-    public void deleteUser(String name) {
-
+    public void deleteUser(int id) {
+        userDAO.delete(id);
     }
 
+    @Transactional
     @Override
-    public User readUser(String name) {
-        return null;
+    public User readUser(int id) {
+        return userDAO.read(id);
     }
 
+    @Transactional
     @Override
     public List<User> getAllUsers() {
-        if (User.getUsersList().isEmpty()) {
-            User.addUser(new User("Igor", "Ilkov", 38));
-            User.addUser(new User("Sergey", "Shichkin", 45));
-            User.addUser(new User("Pupok", "Pupkin", 78));
-        }
-        return User.getUsersList();
+        return userDAO.readUsers();
     }
 
+    @Transactional
     @Override
-    public void saveUser(User user) {
-        User.addUser(user);
+    public void createUser(User user) {
+        userDAO.create(user);
     }
 }
