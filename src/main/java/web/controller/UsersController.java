@@ -18,8 +18,9 @@ public class UsersController {
         return "users/index";
     }
 
-    @GetMapping(value = "/{id}")
-    public String show(@PathVariable("id") int id, ModelMap model) {
+    @GetMapping(value = "/userid")
+    public String show(@RequestParam int id, ModelMap model) {
+        //System.out.println("ID: " + id);
         model.addAttribute("user", usersService.readUser(id));
         return "users/show";
     }
@@ -35,14 +36,14 @@ public class UsersController {
         return "redirect:/users";
     }
 
-    @GetMapping(value = "/delete/{id}")
-    public String deleteUser(@PathVariable("id") int id) {
+    @GetMapping(value = "/delete")
+    public String deleteUser(@RequestParam int id) {
         usersService.deleteUser(id);
         return "redirect:/users";
     }
 
-    @GetMapping(value = "/update/{id}")
-    public String viewUser(@PathVariable("id") int id, ModelMap model) {
+    @GetMapping(value = "/update")
+    public String viewUser(@RequestParam int id, ModelMap model) {
         model.addAttribute("user", usersService.readUser(id));
         return "users/update";
     }
