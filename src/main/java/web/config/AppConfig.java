@@ -23,8 +23,11 @@ import java.util.Properties;
 @EnableTransactionManagement
 public class AppConfig {
 
-    @Autowired
     private Environment env;
+
+    public AppConfig(Environment env) {
+        this.env = env;
+    }
 
     @Bean
     public DataSource getDataSource() {
@@ -49,7 +52,7 @@ public class AppConfig {
     public Properties getHibernateProperties() throws IOException {
         Properties properties = new Properties();
         try {
-            InputStream is = getClass().getClassLoader().getResourceAsStream("hibernate.properties");
+            InputStream is = getClass().getClassLoader().getResourceAsStream("db.properties");
             properties.load(is);
         } catch (IOException e) {
             e.printStackTrace();
