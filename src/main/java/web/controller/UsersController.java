@@ -9,7 +9,7 @@ import web.service.UsersService;
 @Controller
 public class UsersController {
 
-    UsersService usersService;
+    private final UsersService usersService;
 
     public UsersController(UsersService usersService) {
         this.usersService = usersService;

@@ -7,7 +7,6 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class User {
-    private static int id_temp;
     @Id
     @GeneratedValue
     private int id;
@@ -17,7 +16,6 @@ public class User {
     private String secondName;
     @Column(name = "age")
     private int age;
-    private static List<User> usersList = new ArrayList<>();
 
     public User() {
     }
